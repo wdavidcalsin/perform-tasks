@@ -6,6 +6,8 @@ module.exports = {
       primary: "#27303F",
       secondary: "#1B1F2E",
       white: "white",
+      red: "#FF5552",
+      green: "#15FF60",
     },
     extend: {
       zIndex: {
