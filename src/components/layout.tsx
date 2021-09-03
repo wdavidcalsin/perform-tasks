@@ -9,7 +9,7 @@ type Props = {
 function Layout({ children }: Props) {
     return (
         <div className="h-screen w-full flex items-center flex-col">
-            <div className="top-0 right-0 h-screen flex w-full absolute gradient-radial-to-tr -z-10 from-primary to-secondary">
+            <div className="top-0 right-0 h-screen flex w-full absolute -z-10 ">
                 <div className="w-1/2 h-screen bg-secondary"></div>
                 <div className="w-1/2 h-screen bg-primary"></div>
                 <img
