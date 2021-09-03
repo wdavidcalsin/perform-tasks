@@ -2,13 +2,18 @@ import React from "react";
 
 import { ReactComponent as IconVer } from '../image/icono-ver.svg';
 
-function ModalTask() {
+type PropsModal = {
+    title: string,
+    description: string
+}
+
+function ModalTask({ title, description }: PropsModal) {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
             <div className="w-full flex items-center py-3 px-5 justify-between bg-white rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
                 <div className="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
-                    <input className="bg-gray-100 outline-none w-full" type="text" placeholder="Realizar el trabajo 1 y  ejercicio..." />
+                    <input value={title} className="bg-gray-100 outline-none w-full" type="text" placeholder="Realizar el trabajo 1 y  ejercicio..." />
                 </div>
                 <div className="flex space-x-1">
                     <button onClick={() => setShowModal(true)} className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer"><IconVer fill="white" className="w-5 h-auto" /></button>
@@ -25,7 +30,7 @@ function ModalTask() {
 
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-opacity-30 border-primary rounded-t">
                                     <h3 className="text-3xl font-semibold font-noto-sans text-secondary">
-                                        Title of the task
+                                        {title}
                                     </h3>
 
                                     <button
@@ -40,7 +45,7 @@ function ModalTask() {
 
                                 <div className="relative p-6 flex-auto">
                                     <p className="my-4 text-secondary text-lg leading-relaxed font-noto-sans">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi fugiat harum, amet quidem tenetur saepe qui perferendis incidunt maiores voluptate voluptas maxime non quaerat, iusto suscipit eius? Cumque, perferendis odit.
+                                        {description}
                                     </p>
                                 </div>
 
