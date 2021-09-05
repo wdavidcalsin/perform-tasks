@@ -48,7 +48,7 @@ function Write() {
                     "
             >
                 <h2 className="text-secondary font-semibold text-xl font-noto-sans">
-                    Nueva Tarea
+                    New Task
                 </h2>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <input
@@ -69,7 +69,6 @@ function Write() {
                         Create Task
                     </button>
                     <ToastContainer />
-
                 </form>
                 {/* <ToastContainer     position={toast.POSITION.TOP_RIGHT} autoClose={2000} /> */}
             </div>
