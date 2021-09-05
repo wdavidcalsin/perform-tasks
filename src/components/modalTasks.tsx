@@ -1,24 +1,46 @@
-import React from "react";
+import React from 'react';
 
 import { ReactComponent as IconVer } from '../image/icono-ver.svg';
+import { useTodoStore } from '../store/store';
 
 type PropsModal = {
-    title: string,
-    description: string
-}
+    id: string;
+    title: string;
+    description: string;
+};
 
-function ModalTask({ title, description }: PropsModal) {
+function ModalTask({ id, title, description }: PropsModal) {
     const [showModal, setShowModal] = React.useState(false);
+
+    const deleteTodo = useTodoStore((state) => state.deleteTodo);
+
     return (
         <>
             <div className="w-full flex items-center py-3 px-5 justify-between bg-white rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
                 <div className="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
-                    <input value={title} className="bg-gray-100 outline-none w-full" type="text" placeholder="Realizar el trabajo 1 y  ejercicio..." />
+                    <input
+                        defaultValue={title}
+                        className="bg-gray-100 outline-none w-full"
+                        type="text"
+                        placeholder="Realizar el trabajo 1 y  ejercicio..."
+                    />
                 </div>
                 <div className="flex space-x-1">
-                    <button onClick={() => setShowModal(true)} className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer"><IconVer fill="white" className="w-5 h-auto" /></button>
-                    <button className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer">Update</button>
-                    <button className="bg-red py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer">Remove</button>
+                    <button
+                        onClick={() => setShowModal(true)}
+                        className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer"
+                    >
+                        <IconVer fill="white" className="w-5 h-auto" />
+                    </button>
+                    {/* <button className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer">
+                        Update
+                    </button> */}
+                    <button
+                        className="bg-red py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer"
+                        onClick={() => deleteTodo(id)}
+                    >
+                        Remove
+                    </button>
                 </div>
             </div>
 
@@ -27,7 +49,6 @@ function ModalTask({ title, description }: PropsModal) {
                     <div className="w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-opacity-30 border-primary rounded-t">
                                     <h3 className="text-3xl font-semibold font-noto-sans text-secondary">
                                         {title}
@@ -50,23 +71,24 @@ function ModalTask({ title, description }: PropsModal) {
                                 </div>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-opacity-30 border-primary rounded-b font-noto-sans">
-
                                     <button
                                         className="bg-red text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={() => {
+                                            setShowModal(false);
+                                            deleteTodo(id);
+                                        }}
                                     >
                                         Remove
                                     </button>
-                                    <button
+                                    {/* <button
                                         className="bg-green text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={() => setShowModal(false)}
                                     >
                                         Update
-                                    </button>
+                                    </button> */}
                                 </div>
-
                             </div>
                         </div>
                     </div>
