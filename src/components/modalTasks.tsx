@@ -7,9 +7,14 @@ type PropsModal = {
     id: string;
     title: string;
     description: string;
+    date: number;
 };
 
-function ModalTask({ id, title, description }: PropsModal) {
+const dateFormat = (date: number) => {
+    return new Date(date);
+};
+
+function ModalTask({ id, title, description, date }: PropsModal) {
     const [showModal, setShowModal] = React.useState(false);
 
     const deleteTodo = useTodoStore((state) => state.deleteTodo);
@@ -25,7 +30,10 @@ function ModalTask({ id, title, description }: PropsModal) {
                         placeholder="Realizar el trabajo 1 y  ejercicio..."
                     />
                 </div>
-                <div className="flex space-x-1">
+                <div className="flex items-center space-x-1">
+                    <span className="text-primary font-thin italic text-sm">
+                        {dateFormat(date).toLocaleString('en-US')}
+                    </span>
                     <button
                         onClick={() => setShowModal(true)}
                         className="bg-green py-2 px-4 text-white font-semibold rounded-3xl hover:shadow-lg transition duration-3000 cursor-pointer"
@@ -68,6 +76,11 @@ function ModalTask({ id, title, description }: PropsModal) {
                                     <p className="my-4 text-secondary text-lg leading-relaxed font-noto-sans">
                                         {description}
                                     </p>
+                                    <span className="text-primary font-thin italic text-xs float-right">
+                                        {dateFormat(date).toLocaleString(
+                                            'en-US'
+                                        )}
+                                    </span>
                                 </div>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-opacity-30 border-primary rounded-b font-noto-sans">

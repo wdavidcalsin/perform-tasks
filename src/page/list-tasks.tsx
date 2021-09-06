@@ -18,6 +18,7 @@ function ListTasks() {
                             id={todo.id as string}
                             title={todo.title.valueOf()}
                             description={todo.description.valueOf()}
+                            date={todo.date}
                         />
                     ))}
                 </div>

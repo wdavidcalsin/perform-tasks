@@ -12,6 +12,7 @@ const useTodoStore = create<TodoStore>((set) => ({
                     id: uuidv4(),
                     title,
                     description,
+                    date: Date.now(),
                 },
             ],
         }));
@@ -21,14 +22,14 @@ const useTodoStore = create<TodoStore>((set) => ({
             todos: state.todos.filter((todo) => todo.id !== id),
         }));
     },
-    changeTodoStatus: (id: string) => {
+    updateTodo: (id: string, title: string, description: string) => {
         set((state) => ({
             todos: state.todos.map((todo) =>
                 todo.id === id
                     ? {
                           ...todo,
-                          title: todo.title,
-                          description: todo.description,
+                          title: title,
+                          description: description,
                       }
                     : todo
             ),
